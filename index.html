@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+    <link rel="stylesheet" href="/src/css/style.css">
+  </head>
+  <body>
+    <main>
+      <div class="display-value">0</div>
+      <div class="keyboard">
+        <div class="pad gray-top clean-value">AC</div>
+        <div class="pad gray-top positive-or-negative">+/-</div>
+        <div class="pad gray-top percentage">%</div>
+        <div class="pad orange-pad operator first" data-value="/">÷</div>
+        <div class="pad num-btn">7</div>
+        <div class="pad num-btn">8</div>
+        <div class="pad num-btn">9</div>
+        <div class="pad orange-pad operator first" data-value="*">×</div>
+        <div class="pad num-btn">4</div>
+        <div class="pad num-btn">5</div>
+        <div class="pad num-btn">6</div>
+        <div class="pad orange-pad operator second" data-value="-">-</div>
+        <div class="pad num-btn">1</div>
+        <div class="pad num-btn">2</div>
+        <div class="pad num-btn">3</div>
+        <div class="pad orange-pad operator second" data-value="+">+</div>
+        <div class="pad num-btn zero">0</div>
+        <div class="pad num-btn">.</div>
+        <div class="pad orange-pad equal">=</div>
+      </div>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
