@@ -6,6 +6,8 @@ const initApp = (): void => {
   const clearBtn = document.querySelector('.clean-value') as HTMLDivElement
   const operatorBtns = document.querySelectorAll<Element>('.operator')
   const equalBtn = document.querySelector('.equal') as HTMLDivElement
+  const psOrne = document.querySelector('.positive-or-negative') as HTMLDivElement
+  const percentageBtn = document.querySelector('.percentage') as HTMLDivElement
   let prevOperator: HTMLDivElement | null = null
   let currentValue: string = ''
 
@@ -14,10 +16,19 @@ const initApp = (): void => {
       console.log(calculator.inputValue);
       
       const target = event.target  as HTMLDivElement
-      currentValue += target.innerText
+      
+      if (currentValue.includes('.') && target.innerText === '.') {
+        return
+      }
+
+      if (currentValue === '' && target.innerText === '.') {
+        currentValue = '0.'
+      } else {
+        currentValue += target.innerText
+      }
       calculator.setDisplay(currentValue)
       calculator.render()
-      console.log(currentValue);
+      console.log('current1', currentValue);
     })
     
   })
@@ -43,8 +54,12 @@ const initApp = (): void => {
       calculator.appendNumber(currentValue)
       
       currentValue = target.innerText
-      if (currentValue.length && calculator.inputValue[calculator.inputValue.length - 1 ] !== currentValue) {
+      if (currentValue.length && calculator.inputValue[calculator.inputValue.length - 1] !== currentValue) {
+        console.log(calculator.inputValue);
         calculator.appendNumber(currentValue)
+        if ('+-×÷'.includes(calculator.inputValue[calculator.inputValue.length - 2])) {
+          calculator.inputValue.splice(calculator.inputValue.length - 2, 1)
+        }
       }
       
       console.log('current', currentValue);
@@ -63,7 +78,25 @@ const initApp = (): void => {
     calculator.render()
   })
 
+
+  psOrne.addEventListener('click', () => {
+    calculator.setDisplay(Number(currentValue) > 0 ? (Math.abs(Number(currentValue)) * -1).toString() : Math.abs(Number(currentValue)).toString())
+    currentValue = calculator.displayValue === '0' ? '' : calculator.displayValue
+    console.log(calculator.displayValue);
+    console.log('current', currentValue);
+    calculator.render()
+    
+  })
+
+  percentageBtn.addEventListener('click', () => {
+    const temp: string = calculator.displayValue
+    calculator.clear()
+    currentValue = (Number(temp) / 100).toString()
+    calculator.setDisplay(currentValue)
+    calculator.render()
+  })
 }
+
 
 
 document.addEventListener('DOMContentLoaded', initApp)
