@@ -1,13 +1,17 @@
-export default class Calculator {
+interface CalItem {
+  inputValue: string[],
+  displayValue: string
+}
+export default class Calculator implements CalItem{
 
   inputValue: string[]
   displayValue: string
 
-  static instance: Calculator = new Calculator([], '0')
+  static instance: Calculator = new Calculator()
 
   private constructor(
-    inputValue: string[],
-    displayValue: string,
+    inputValue: string[] = [],
+    displayValue: string = '0',
   ) {
     this.inputValue = inputValue
     this.displayValue = displayValue
