@@ -1,6 +1,6 @@
 # Calculator Project
 
-This is a calculator project developed using Vite and TypeScript, aimed at practicing Object-Oriented Programming (OOP) concepts. The project serves as a practical example of building a web application from scratch, employing vanilla JavaScript and TypeScript for a strong foundation in object-oriented development.
+This is a calculator project developed using Vite and TypeScript, aimed at practicing Object-Oriented Programming (OOP) concepts. The project serves as a practical example of building a web application from scratch, employing vanilla JavaScript and TypeScript for a strong foundation in object-oriented development. [View Demo](https://qweb321.github.io/Calculator/)
 
 ## Table of contents
 - [Features](#features)
