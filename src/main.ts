@@ -13,10 +13,12 @@ const initApp = (): void => {
 
   numBtns.forEach((btn) => {
     btn.addEventListener('click', (event) => {
-      console.log(calculator.inputValue);
-      
       const target = event.target  as HTMLDivElement
       
+      if (!isNaN(Number(calculator.inputValue[calculator.inputValue.length - 1])) && target.classList.contains('num-btn')) {
+        calculator.clear()
+      }
+
       if (currentValue.includes('.') && target.innerText === '.') {
         return
       }
@@ -28,7 +30,6 @@ const initApp = (): void => {
       }
       calculator.setDisplay(currentValue)
       calculator.render()
-      console.log('current1', currentValue);
     })
     
   })
@@ -55,14 +56,12 @@ const initApp = (): void => {
       
       currentValue = target.innerText
       if (currentValue.length && calculator.inputValue[calculator.inputValue.length - 1] !== currentValue) {
-        console.log(calculator.inputValue);
         calculator.appendNumber(currentValue)
         if ('+-×÷'.includes(calculator.inputValue[calculator.inputValue.length - 2])) {
           calculator.inputValue.splice(calculator.inputValue.length - 2, 1)
         }
       }
       
-      console.log('current', currentValue);
       currentValue = ''
 
     })
@@ -80,10 +79,19 @@ const initApp = (): void => {
 
 
   psOrne.addEventListener('click', () => {
-    calculator.setDisplay(Number(currentValue) > 0 ? (Math.abs(Number(currentValue)) * -1).toString() : Math.abs(Number(currentValue)).toString())
+
+    if (calculator.inputValue.length > 0) {
+      // 取得最後一個數字的索引
+      const lastIndex = calculator.inputValue.length - 1;
+      currentValue = calculator.inputValue[lastIndex]
+      // clear inputValue
+      calculator.clear()
+      // reset display
+      calculator.setDisplay(currentValue)
+    }
+
+    calculator.setDisplay(Number(calculator.displayValue) > 0 ? (Math.abs(Number(calculator.displayValue)) * -1).toString() : Math.abs(Number(calculator.displayValue)).toString())
     currentValue = calculator.displayValue === '0' ? '' : calculator.displayValue
-    console.log(calculator.displayValue);
-    console.log('current', currentValue);
     calculator.render()
     
   })

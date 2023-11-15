@@ -80,7 +80,6 @@ export default class Calculator implements CalItem{
       }
       
     }
-    console.log('hi', this.inputValue);
     this.displayValue = this.inputValue[0] ? this.inputValue[0] : '0'
   }
 }
